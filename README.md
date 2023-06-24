@@ -24,8 +24,6 @@ In summary, the parser subsystem implements the functionality of splitting the i
 The static parser is a mechanism that enables the extraction and analysis of content blocks or analysis within the same block. The structure of the parser aims to simplify the analyzed area by simply cutting out the main content.
 
 
-Certainly! Based on the provided class `StaticTextParser`, here are some additional details you can include:
-
 1. **Functionality**: The `StaticTextParser` is designed to perform static tag parsing, extracting content between specified start and end tokens.
 
 2. **Tag Configuration**: The parser supports the configuration of tags through the `parameters` attribute. Each parameter represents a tag and consists of a name, start tag, and optional end tag.
