@@ -1,4 +1,4 @@
-# simple-web-crawler
+# web-data-crawler
 
 This repository contains a comprehensive solution for content analysis, extraction, and processing. The subsystems within this project work together to provide an efficient and flexible solution, enabling simplified extraction of valuable information from various data sources.
 

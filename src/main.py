@@ -1,4 +1,5 @@
 import json
+import asyncio
 import logging
 
 from utils import find_match
@@ -9,10 +10,11 @@ from parsers import TeamLeagueContentParser
 from text_parser.sequential_text_parser import SequentialTextParser
 from text_parser.static_text_parser import StaticTextParser
 
+
 logger = logging.getLogger(__name__)
 
 
-def main():
+def handler():
     # Template configuration and settings
     template_settings = TemplateSettings(
         http_method='POST',
@@ -90,7 +92,7 @@ def main():
     next_game = find_match(matches, team='Cruzeiro')
 
     if next_game:
-        print(f"Próximo jogo do {next_game['team']}:")
+        print(f"\nPróximo jogo do {next_game['team']}:")
         print("Time adversário:", next_game['opponent'])
         print("Dia e horário:", next_game['match_date_time'])
         print("Odds - Vitória:", next_game['odds']['victory'])
@@ -99,6 +101,18 @@ def main():
     else:
         print(f"Não há jogos futuros do {team} na lista.", "\n")
 
+async def main():
+    logger.info('Starting WebCrawler Application...')
+    try:
+        while True:
+            logger.info('Waiting for time for next data extraction');
+            handler()
+            await asyncio.sleep(20)
+    except KeyboardInterrupt:
+        logger.warning('CTRL+C detected! Terminating application...')
+    finally:
+        logger.info('Terminating application...')
+
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
