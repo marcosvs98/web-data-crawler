@@ -1,8 +1,9 @@
 const logging = require('logging');
-const findMatch = require('./utils');
+const {sleep, findMatch} = require('./utils');
 const fs = require('fs');
 const { Template, Parameter, TemplateSettings } = require('./dtos');
 
+const { AsyncCrawlerHandlerLifecycle } = require('./context');
 const { DateFilterHandler, DecimalFilterHandler, JSONStringDecoderHandler } = require('./filters');
 const { requestContent } = require('./client');
 const { StaticTextParser } = require('./static_text_parser');
@@ -10,7 +11,7 @@ const { SequentialTextParser } = require('./sequential_text_parser');
 const { TeamLeagueContentParser } = require('./parsers');
 
 
-async function main() {
+async function handler() {
   // Template configuration and settings
   const templateSettings = new TemplateSettings({
     http_method: 'POST',
@@ -123,6 +124,27 @@ async function main() {
     console.log(matches);
   }
 }
+
+
+async function main() {
+  console.log('Starting WebCraelwer Application...');
+  const crawler = new AsyncCrawlerHandlerLifecycle(handler);
+
+  try {
+    await crawler.start();
+
+    while (true) {
+      console.error('Waiting for time for next data extraction');
+      await sleep(10000);
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
+  } finally {
+    console.log('Terminating application...');
+    await crawler.stop();
+  }
+}
+
 
 if (require.main === module) {
   main();

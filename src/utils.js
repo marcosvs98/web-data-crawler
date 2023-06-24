@@ -25,4 +25,14 @@ function findMatch(matches, team) {
   }
 }
 
-module.exports = findMatch;
+
+async function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+
+function capitalizeString(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+module.exports = {findMatch, sleep, capitalizeString};

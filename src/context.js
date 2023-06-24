@@ -8,20 +8,6 @@ class AsyncEventHandlerAdapterInterface {
   async stop() {
     throw new Error('Method not implemented.');
   }
-
-  async __aenter__(kwargs) {
-    await this.start();
-    return this;
-  }
-
-  async __aexit__(exc_type, exc_val, exc_tb) {
-    if (exc_val) {
-      console.warning(`exc_type: ${exc_type}`);
-      console.warning(`exc_value: ${exc_val}`);
-      console.warning(`exc_traceback: ${exc_tb}`);
-    }
-    await this.stop();
-  }
 }
 
 class AsyncEventHandlerThreadedAdapter extends AsyncEventHandlerAdapterInterface {
@@ -64,3 +50,21 @@ class AsyncEventHandlerThreadedAdapter extends AsyncEventHandlerAdapterInterface
     }
   }
 }
+
+
+class AsyncCrawlerHandlerLifecycle extends AsyncEventHandlerThreadedAdapter {
+  constructor(thread_handler) {
+    super();
+    this.thread_handler = thread_handler;
+  }
+
+  async handle_event() {
+    let running = true;
+    while (running) {
+      await this.thread_handler();
+      await this.delay(1000 * 2);
+    }
+  }
+}
+
+module.exports = {AsyncCrawlerHandlerLifecycle};
