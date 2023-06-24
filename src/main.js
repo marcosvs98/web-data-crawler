@@ -127,7 +127,7 @@ async function handler() {
 
 
 async function main() {
-  console.log('Starting WebCraelwer Application...');
+  console.log('Starting WebCrawler Application...');
   const crawler = new AsyncCrawlerHandlerLifecycle(handler);
 
   try {
