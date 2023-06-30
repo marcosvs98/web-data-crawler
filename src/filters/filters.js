@@ -1,6 +1,6 @@
 const { DateTime } = require('luxon');
-const {capitalizeString} = require('./utils');
-const AbstractHandler = require('./handlers');
+const {capitalizeString} = require('../utils/utils');
+const AbstractHandler = require('../handlers/handlers');
 
 class DateFilterHandler extends AbstractHandler {
   filter(value) {

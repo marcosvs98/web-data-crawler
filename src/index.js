@@ -1,14 +1,13 @@
-const logging = require('logging');
-const {sleep, findMatch} = require('./utils');
+const {sleep, findMatch} = require('./utils/utils');
 const fs = require('fs');
-const { Template, Parameter, TemplateSettings } = require('./dtos');
+const { Template, Parameter, TemplateSettings } = require('./schemas/dtos');
 
-const { AsyncCrawlerHandlerLifecycle } = require('./context');
-const { DateFilterHandler, DecimalFilterHandler, JSONStringDecoderHandler } = require('./filters');
-const { requestContent } = require('./client');
-const { StaticTextParser } = require('./static_text_parser');
-const { SequentialTextParser } = require('./sequential_text_parser');
-const { TeamLeagueContentParser } = require('./parsers');
+const { AsyncCrawlerHandlerLifecycle } = require('./context/context');
+const { DateFilterHandler, DecimalFilterHandler, JSONStringDecoderHandler } = require('./filters/filters');
+const { requestContent } = require('./client/client');
+const { StaticTextParser } = require('./text-parser/static-text-parser');
+const { SequentialTextParser } = require('./text-parser/sequential-text-parser');
+const { TeamLeagueContentParser } = require('./content-parser/league_parser');
 
 
 async function handler() {

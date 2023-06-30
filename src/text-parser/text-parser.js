@@ -10,23 +10,23 @@ class TextParser {
     this.reset();
   }
 
-  _filter(value, chain_filter) {
-    if (chain_filter && value) {
-      value = chain_filter.filter(value);
+  _filter(value, chainFilter) {
+    if (chainFilter && value) {
+      value = chainFilter.filter(value);
     }
     return value;
   }
 
   reset() {
-    this.content_upper = this.content.toUpperCase();
+    this.contentUpper = this.content.toUpperCase();
     this.cursor = this.content;
-    this.cursor_upper = this.content_upper;
+    this.cursorUpper = this.contentUpper;
     this.field = null;
-    this.field_upper = null;
+    this.fieldUpper = null;
   }
 
-  value(uppercase = false, chain_filter = null) {
-    const filtered = this._filter(this.field, uppercase.chain_filter);
+  value(uppercase = false, chainFilter = null) {
+    const filtered = this._filter(this.field, uppercase.chainFilter);
     if (uppercase.uppercase && typeof filtered === 'string') {
       return filtered.toUpperCase();
     }
@@ -48,7 +48,7 @@ class TextParser {
     return partitioned;
   }
 
-  parse(tag_name) {
+  parse(tagName) {
     // To be implemented in subclasses
   }
 }

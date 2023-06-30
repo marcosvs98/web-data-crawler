@@ -14,8 +14,8 @@ class AsyncEventHandlerThreadedAdapter extends AsyncEventHandlerAdapterInterface
   constructor() {
     super();
     this.thread = null;
-    this.thread_name = this.constructor.name;
-    this.thread_running = false;
+    this.threadName = this.constructor.name;
+    this.threadRunning = false;
   }
 
   async handle_event() {
@@ -24,10 +24,10 @@ class AsyncEventHandlerThreadedAdapter extends AsyncEventHandlerAdapterInterface
 
   async delay(interval) {
     const t0 = Date.now();
-    while (this.thread_running && t0 + interval > Date.now()) {
+    while (this.threadRunning && t0 + interval > Date.now()) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
-    return this.thread_running;
+    return this.threadRunning;
   }
 
   async start() {
@@ -39,13 +39,13 @@ class AsyncEventHandlerThreadedAdapter extends AsyncEventHandlerAdapterInterface
           console.error(error);
         }
       })();
-      this.thread_running = true;
+      this.threadRunning = true;
     }
   }
 
   async stop() {
     if (this.thread) {
-      this.thread_running = false;
+      this.threadRunning = false;
       this.thread = null;
     }
   }
@@ -62,7 +62,7 @@ class AsyncCrawlerHandlerLifecycle extends AsyncEventHandlerThreadedAdapter {
     let running = true;
     while (running) {
       await this.thread_handler();
-      await this.delay(1000 * 2);
+      await this.delay(1000 * 5);
     }
   }
 }

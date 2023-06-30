@@ -3,6 +3,13 @@
 This repository contains a comprehensive solution for content analysis, extraction, and processing. The subsystems within this project work together to provide an efficient and flexible solution, enabling simplified extraction of valuable information from various data sources.
 
 
+### Run docker-compose
+Run the project and its dependencies in the background using the command:
+```bash
+docker-compose up -d
+```
+
+--- 
 ### Parser
 
 The parser subsystem uses simple algorithms to split the input string based on a provided separator. While the specific implementation may vary in different programming languages, the core idea is to create a function or method that divides the string into different sections.

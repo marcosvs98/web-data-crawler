@@ -5,14 +5,14 @@ const {
   StartTokenNotFoundParserException,
   TagNotFoundParserException,
   TeamCatalogParserException,
-} = require('./exceptions');
-const { Match } = require('./dtos');
+} = require('../exceptions/exceptions');
+const { Match } = require('../schemas/dtos');
 
 
 class TeamLeagueContentParser extends ContentParser {
   parse() {
     try {
-      this.content = this.text_parser_static.parse('LEAGUE').value();
+      this.content = this.staticTextParser.parse('LEAGUE').value();
     } catch (ex) {
       console.log('Error occurred during parsing of the team catalog.')
       throw new TeamCatalogParserException(ex?.message);
@@ -28,9 +28,9 @@ class TeamLeagueContentParser extends ContentParser {
 
       for (const parameter of this.template.parameters) {
         try {
-          const value = this.text_parser_sequential.parse(parameter.name).value({
+          const value = this.sequentialTextParser.parse(parameter.name).value({
             uppercase: true,
-            chain_filter: this.filters[parameter.name],
+            chainFilter: this.filters[parameter.name],
           });
           parameter_name = parameter.name;
 
