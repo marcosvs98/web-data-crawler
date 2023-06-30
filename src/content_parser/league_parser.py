@@ -1,15 +1,14 @@
 import logging
 
-from content_parser import ContentParser
-from exceptions import (
+from content_parser.content_parser import ContentParser
+from exceptions.parser_exceptions import (
     EndTokenNotFoundParserException,
     ParserException,
     StartTokenNotFoundParserException,
     TagNotFoundParserException,
     TeamCatalogParserException,
 )
-from dtos import Match
-
+from schemas.dtos import Match
 
 logger = logging.getLogger(__name__)
 

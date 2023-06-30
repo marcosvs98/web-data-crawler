@@ -1,6 +1,6 @@
 import logging
 
-from exceptions import (
+from exceptions.parser_exceptions import (
     EndTokenNotFoundParserException,
     InvalidTagParserException,
     StartTokenNotFoundParserException,

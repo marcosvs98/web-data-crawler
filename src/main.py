@@ -3,13 +3,12 @@ import asyncio
 import logging
 
 from utils import find_match
-from dtos import Parameter, Template, TemplateSettings
-from filters import DateFilterHandler, DecimalFilterHandler, JSONStringDecoderHandler
-from http_client import request_content
-from parsers import TeamLeagueContentParser
+from schemas.dtos import Parameter, Template, TemplateSettings
+from filters.data_filters import DateFilterHandler, DecimalFilterHandler, JSONStringDecoderHandler
+from content_request.http_client import request_content
+from content_parser.league_parser import TeamLeagueContentParser
 from text_parser.sequential_text_parser import SequentialTextParser
 from text_parser.static_text_parser import StaticTextParser
-
 
 logger = logging.getLogger(__name__)
 

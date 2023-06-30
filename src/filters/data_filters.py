@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pytz
 
-from handlers import AbstractHandler
+from filters.handlers import AbstractHandler
 
 
 class DateFilterHandler(AbstractHandler):

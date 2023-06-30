@@ -16,16 +16,15 @@ class Parameter(DataTransferObject):
 
 
 class TemplateSettings(DataTransferObject):
-    http_method: str = Field(..., description='Parameter name')
-    headers: list = Field(..., description='Parameter name')
-    postdata: Union[dict, str] = Field(..., description='Parameter name')
+    http_method: str
+    headers: list
+    postdata: Union[dict, str]
 
 
 class Template(DataTransferObject):
     url: str
     parameters: List[Parameter] = []
     settings: TemplateSettings
-
 
 
 class Match(DataTransferObject):
